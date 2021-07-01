@@ -266,14 +266,14 @@ begin
                         WriteRamCounter <= WriteRamCounter + 1;
      
                         case WriteRamCounter is
-                            when "0000" => Mem_wAddress_int <= "1000000"; RAM_Data_int <= A_int + MemH_in; ROM_addr_int <= "0000" ; --0x40
-                            when "0001" => Mem_wAddress_int <= "1000001"; RAM_Data_int <= B_int + MemH_in; ROM_addr_int <= "0001" ;--0x41
-                            when "0010" => Mem_wAddress_int <= "1000010"; RAM_Data_int <= C_int + MemH_in; ROM_addr_int <= "0010" ;--0x42
-                            when "0011" => Mem_wAddress_int <= "1000011"; RAM_Data_int <= D_int + MemH_in; ROM_addr_int <= "0011" ;--0x43
-                            when "0100" => Mem_wAddress_int <= "1000100"; RAM_Data_int <= E_int + MemH_in; ROM_addr_int <= "0100" ;--0x44
-                            when "0101" => Mem_wAddress_int <= "1000101"; RAM_Data_int <= F_int + MemH_in; ROM_addr_int <= "0101" ;--0x45
-                            when "0110" => Mem_wAddress_int <= "1000110"; RAM_Data_int <= G_int + MemH_in; ROM_addr_int <= "0110" ;--0x46
-                            when "0111" => Mem_wAddress_int <= "1000111"; RAM_Data_int <= H_int + MemH_in; ROM_addr_int <= "0111" ;--0x47
+                            when "0000" => Mem_wAddress_int <= "1000000"; RAM_Data_int <= A_int + MemH_in; ROM_addr_int <= "0001" ; --0x40
+                            when "0001" => Mem_wAddress_int <= "1000001"; RAM_Data_int <= B_int + MemH_in; ROM_addr_int <= "0010" ;--0x41
+                            when "0010" => Mem_wAddress_int <= "1000010"; RAM_Data_int <= C_int + MemH_in; ROM_addr_int <= "0011" ;--0x42
+                            when "0011" => Mem_wAddress_int <= "1000011"; RAM_Data_int <= D_int + MemH_in; ROM_addr_int <= "0100" ;--0x43
+                            when "0100" => Mem_wAddress_int <= "1000100"; RAM_Data_int <= E_int + MemH_in; ROM_addr_int <= "0101" ;--0x44
+                            when "0101" => Mem_wAddress_int <= "1000101"; RAM_Data_int <= F_int + MemH_in; ROM_addr_int <= "0110" ;--0x45
+                            when "0110" => Mem_wAddress_int <= "1000110"; RAM_Data_int <= G_int + MemH_in; ROM_addr_int <= "0111" ;--0x46
+                            when "0111" => Mem_wAddress_int <= "1000111"; RAM_Data_int <= H_int + MemH_in; ROM_addr_int <= "1000" ;--0x47
                             when "1000" => Mem_wAddress_int <= "1001001"; RAM_Data_int <= x"00000001";--0x49 Status Register
                             when others => Mem_wAddress_int <= "1111111";
                         end case;
