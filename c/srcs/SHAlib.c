@@ -1,6 +1,6 @@
 #include "SHAlib.h"
 
-void SHA256(char * text, uint32_t * Digest){
+void SHA256(char * text, uint32_t * Digest, const uint8_t AXI){
 
 	uint32_t TextSize;
 	uint32_t dim = 0;
@@ -13,8 +13,6 @@ void SHA256(char * text, uint32_t * Digest){
 
 	while(text[dim] != '\0') dim++;
 	TextSize = 8*dim;
-
-	printf("dim : %d\n",dim);
 
 	if(TextSize > 512-65 || dim > 32) printf("To be added....\n");
 	else{
@@ -48,21 +46,9 @@ void SHA256(char * text, uint32_t * Digest){
 			s1 = (rightRotate(W[i-2],17)) ^ (rightRotate(W[i-2],19)) ^ (W[i-2] >> 10);
 			W[i] = (W[i-16] + s0 + W[i-7] + s1)%4294967296;
 
-			if(i == 16){
-				printf("s0 : %08x\n",s0);
-				printf("s1 : %08x\n",s1);
-				printf("ww : %08x\n",W[i-16]);
-				printf("www : %08x\n",W[i-7]);
-				printf("somma : %08x\n",W[i]);
-			}
 		}
 
-		for(int i = 0; i < 64; i++) {
-			//printf("Data : %02x\n",Data[i]);
-			printf("%08x",W[63-i]);
-		}
-
-		Initialize(&MS,AXI_FULL);
+		Initialize(&MS,AXI);
 		SHA_Compression(MS,W,Digest);
 		Deinitialize(&MS);
 	}

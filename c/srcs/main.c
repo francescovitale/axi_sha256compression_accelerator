@@ -57,33 +57,34 @@ int main()
 {
     init_platform();
 
-
-    uint32_t Data[64];
+    //Variables
     uint32_t Digest[8];
+    XTime start;
+    XTime end;
 
+    //Starting string
     char a[12];
-
     strcpy(a,"hello world");
 
-    SHA256(a,Digest);
-    //printf("rot : %08x\n",rightRotate(0x6F20776F,7));
-    //printf("rot : %08x\n",rightRotate(0x6F20776F,18));
-    //printf("rot : %08x\n",0x6F20776F>>3);
-    //printf("xor : %08x\n",0xdede40ee ^ 0x1ddbdbc8 ^ 0x0de40eed);
+    //Hash function with AXI_LITE
+    XTime_GetTime(&start);
+    SHA256(a,Digest,AXI_LITE);
+    XTime_GetTime(&end);
 
-    /*Initialize(&MS,AXI_FULL);
-
-    for(int i = 0; i < 64; i++) {
-    	Data[i] = 4*i;
-    }
-
-    SHA_Compression(MS,Data,Digest);
-	*/
-    printf("Digest : ");
+    printf("Digest LITE: ");
     for(int i = 0; i < 8; i++) printf("%08x",Digest[i]);
-    printf("\n");
+    printf("\nTime LITE: %lld\n\n", 2*(end-start));
 
-    /*Deinitialize(&MS);*/
+    //Hash function with AXI_FULL
+    XTime_GetTime(&start);
+    SHA256(a,Digest,AXI_FULL);
+    XTime_GetTime(&end);
+
+    printf("Digest FULL: ");
+    for(int i = 0; i < 8; i++) printf("%08x",Digest[i]);
+    printf("\nTime FULL: %lld\n\n", 2*(end-start));
+
     cleanup_platform();
+
     return 0;
 }
